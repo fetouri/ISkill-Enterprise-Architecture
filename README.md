@@ -37,9 +37,14 @@ Direct exposure of EF Core entities across HTTP boundaries leads to mass-assignm
 In relational data access, fetching navigation properties in iterative loops causes cascading database round-trips:
 - Optimized using **Eager Loading (`.Include()`)** combined with explicit projections, executing a single optimized SQL `JOIN`.
 - Read-only operations leverage **`.AsNoTracking()`** to bypass the EF Core change tracker, cutting memory allocations and reducing Garbage Collection (GC) pauses under load.
-### 3. Identity & Token-Based Security
+### 3. Identity & Full-Stack Token Security
 - Integrated **ASP.NET Core Identity** for secure password hashing (PBKDF2 with HMAC-SHA256).
-- Stateless **JWT Bearer Authentication** with cryptographically signed tokens and fine-grained Role-Based Access Control (`Admin`, `Writer`, `Reader`).
+- Stateless **JWT Bearer Authentication** with cryptographically signed tokens and fine-grained Role-Based Access Control (Admin, Writer, Reader).
+- **Angular 18 SSR Pass-Through:** Eliminates authentication flickering during Server-Side Rendering via decoupled execution checks (isPlatformServer).
+- **Defensive Error Handling:** Global middleware sanitizes exceptions, preventing sensitive stack traces or database schema disclosures.
+- 📖 **Full Architectural Specification:** Read the [Complete Security Architecture Guide](SECURITY_ARCHITECTURE.md).
+
+![Full-Stack Security & JWT Flow](jwt_auth_architecture.jpg)
 ---
 ##  Architectural Evolution: .NET 7 vs. .NET 8 Considerations
 As modern backend engineering evolves, this blueprint highlights key technical advantages when transitioning enterprise solutions from **.NET 7** to **.NET 8**:

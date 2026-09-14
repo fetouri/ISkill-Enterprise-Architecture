@@ -1,12 +1,12 @@
 # 🔐 Full-Stack Authentication & Authorization Architecture
 > **Project:** ISkill.ly Platform  
-> **Stack:** ASP.NET Core 8 Web API | Angular 18 (SSR) | Microsoft SQL Server  
+> **Current Stack:** ASP.NET Core 7.0 Web API (with .NET 8 Architectural Evolution Analysis) | Angular 18 (SSR) | Microsoft SQL Server  
 > **Author:** Elfetouri Zidan  
 
 ---
 
 ## 📌 Executive Summary
-This document outlines the end-to-end security architecture implemented in the ISkill.ly platform. The system uses a decoupled, stateless **JSON Web Token (JWT)** workflow between an **Angular 18 Server-Side Rendered (SSR)** frontend and an **ASP.NET Core 8 Web API** backend with ASP.NET Core Identity.
+This document outlines the end-to-end security architecture implemented in the ISkill.ly platform. The system uses a decoupled, stateless **JSON Web Token (JWT)** workflow between an **Angular 18 Server-Side Rendered (SSR)** frontend and an **ASP.NET Core 7.0 Web API** backend powered by ASP.NET Core Identity.
 
 ```
 +-----------------------------------------------------------------------------------+
@@ -23,12 +23,13 @@ This document outlines the end-to-end security architecture implemented in the I
 |                                       │ (HTTPS / REST API)                        |
 |                                       ▼                                           |
 |                                                                                   |
-|   [ ASP.NET Core 8 Web API (Backend) ]                                            |
+|   [ ASP.NET Core 7.0 Web API (Backend) ]                                          |
 |        │                                                                          |
 |        ├── 1. JWT Bearer Middleware: Validates signature, issuer, & expiry.       |
 |        ├── 2. ClaimsPrincipal: Maps User ID, Email, and Roles (Writer/Reader).    |
 |        ├── 3. Role-Based Auth: [Authorize(Roles = "Writer")] on protected APIs.   |
 |        └── 4. Global Exception Middleware: Sanitizes errors, hides stack traces.  |
+
 |                                                                                   |
 |                                       │ (EF Core / Persistence)                   |
 |                                       ▼                                           |

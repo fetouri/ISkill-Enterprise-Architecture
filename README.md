@@ -37,6 +37,10 @@ Direct exposure of EF Core entities across HTTP boundaries leads to mass-assignm
 In relational data access, fetching navigation properties in iterative loops causes cascading database round-trips:
 - Optimized using **Eager Loading (`.Include()`)** combined with explicit projections, executing a single optimized SQL `JOIN`.
 - Read-only operations leverage **`.AsNoTracking()`** to bypass the EF Core change tracker, cutting memory allocations and reducing Garbage Collection (GC) pauses under load.
+- 📖 **Full Architectural Specification:** Read the [High-Performance EF Core Query Architecture Guide](EF_CORE_PERFORMANCE.md).
+
+![EF Core Query Optimization Architecture](ef_core_optimization_architecture.jpg)
+
 ### 3. Identity & Full-Stack Token Security
 - Integrated **ASP.NET Core Identity** for secure password hashing (PBKDF2 with HMAC-SHA256).
 - Stateless **JWT Bearer Authentication** with cryptographically signed tokens and fine-grained Role-Based Access Control (Admin, Writer, Reader).
